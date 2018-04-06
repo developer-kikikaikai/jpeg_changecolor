@@ -1,1 +1,8 @@
 Please install libjpeg-dev to use it
+Build:
+ 1. install libjpeg-dev
+ 2. make
+
+Use:
+ ./convert2YCbCr422 <infile> <outfile> <quality (low:0-100:high)>
+ This application convert infile JPEG to outfile JPEG with quality and YCbCr422 color format, by using libjpeg.
