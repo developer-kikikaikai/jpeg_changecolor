@@ -1,9 +1,14 @@
 TARGET=convert2YCbCr422
-SRC=main.c
-CFLAG=-g -O0 
+SRC=$(shell find . -maxdepth 1 -name *.c)
+CFLAG=-g -O2 
+LIBS=-l jpeg
+OBJ=$(SRC:%.c=%.o)
 
-all:
-	gcc ${CFLAG} ${SRC} -l jpeg -o ${TARGET}
+all: $(OBJ)
+	gcc $(CFLAG) $(OBJ) $(LIBS) -o $(TARGET)
+
+%.o: %.c
+	gcc -o $@ -c $<
 
 clean:
-	if [ -e ${TARGET} ]; then rm ${TARGET}; fi
+	rm -f $(OBJ) $(TARGET);
