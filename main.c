@@ -37,14 +37,15 @@ static void convertAndWrite(struct jpeg_decompress_struct *in_cinfo, int quality
 	cinfo.input_components = in_cinfo->output_components;
 	cinfo.data_precision=in_cinfo->data_precision;
 	cinfo.in_color_space = in_cinfo->out_color_space;
-	jpeg_set_quality(&cinfo, quality, TRUE);
-	//set YCbCr
-	//jpeg_set_colorspace(&cinfo, JCS_YCbCr);
+	//have to set default first
 	jpeg_set_defaults(&cinfo);
-	//set 2x1x1
-	//cinfo.comp_info[0].v_samp_factor=1;
-	//cinfo.comp_info[1].v_samp_factor=1;
-	//cinfo.comp_info[2].v_samp_factor=1;
+
+	//set quality and color space
+	jpeg_set_quality(&cinfo, quality, TRUE);
+	//set YCbCr 2x1x1
+	cinfo.comp_info[0].v_samp_factor=1;
+	cinfo.comp_info[1].v_samp_factor=1;
+	cinfo.comp_info[2].v_samp_factor=1;
 
 
 	jpeg_start_compress(&cinfo, TRUE);
