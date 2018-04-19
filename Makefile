@@ -1,5 +1,5 @@
 TARGET=convert2YCbCr422
-SRC=$(shell find . -maxdepth 1 -name *.c)
+SRC=$(shell find . -maxdepth 1 -name "*.c")
 CFLAG=-g -O2 
 LIBS=-l jpeg
 OBJ=$(SRC:%.c=%.o)
